@@ -47,11 +47,11 @@
                 <div class="accordion-body">
                     <!-- Account Details List -->
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item d-flex">Account Name <span class="ms-auto"><b>${account.account_name}</b></span></li>
-                        <li class="list-group-item d-flex">Account Number <span class="ms-auto"><b>${account.account_number}</b></span></li>
-                        <li class="list-group-item d-flex">Account Type <span class="ms-auto"><b>${account.account_type}</b></span></li>
+                        <li class="list-group-item d-flex">Account Name <span class="ms-auto"><b>${account.accountName}</b></span></li>
+                        <li class="list-group-item d-flex">Account Number <span class="ms-auto"><b>${account.accountNumber}</b></span></li>
+                        <li class="list-group-item d-flex">Account Type <span class="ms-auto"><b>${account.accountType}</b></span></li>
                         <li class="list-group-item d-flex">Account Balance <span class="ms-auto"><b>${account.balance}</b></span></li>
-                        <li class="list-group-item d-flex">Created at <span class="ms-auto"><b>${account.created_at}</b></span></li>
+                        <li class="list-group-item d-flex">Created at <span class="ms-auto"><b>${account.createdAt}</b></span></li>
                     </ul>
                     <!-- Account Details List -->
                 </div>

@@ -26,9 +26,9 @@ public class ApplicationController {
 
         User user = (User) session.getAttribute("user");
 
-        List<Account> getAccounts = accountRepository.getUserAccountById(user.getUserId());
+        List<Account> getAccounts = accountRepository.getUserAccountById(user.getUser_id());
 
-        BigDecimal getTotalAccountBalance = accountRepository.getTotalBalance(user.getUserId());
+        BigDecimal getTotalAccountBalance = accountRepository.getTotalBalance(user.getUser_id());
 
         getDashboardPage.addObject("userAccounts", getAccounts);
         getDashboardPage.addObject("totalBalance", getTotalAccountBalance);

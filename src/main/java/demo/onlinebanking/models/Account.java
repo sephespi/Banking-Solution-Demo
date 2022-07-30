@@ -10,13 +10,13 @@ public class Account {
 
     @Id
     private int accountId;
-    private int userId;
-    private String accountNumber;
-    private String accountName;
-    private String accountType;
+    private int user_id;
+    private String account_number;
+    private String account_name;
+    private String account_type;
     private BigDecimal balance;
-    private LocalDateTime createdAt;
-    private LocalDateTime updatedAt;
+    private LocalDateTime created_at;
+    private LocalDateTime updated_at;
 
     public int getAccountId() {
         return accountId;
@@ -26,36 +26,36 @@ public class Account {
         this.accountId = accountId;
     }
 
-    public int getUserId() {
-        return userId;
+    public int getUser_id() {
+        return user_id;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setUser_id(int user_id) {
+        this.user_id = user_id;
     }
 
-    public String getAccountNumber() {
-        return accountNumber;
+    public String getAccount_number() {
+        return account_number;
     }
 
-    public void setAccountNumber(String accountNumber) {
-        this.accountNumber = accountNumber;
+    public void setAccount_number(String account_number) {
+        this.account_number = account_number;
     }
 
-    public String getAccountName() {
-        return accountName;
+    public String getAccount_name() {
+        return account_name;
     }
 
-    public void setAccountName(String accountName) {
-        this.accountName = accountName;
+    public void setAccount_name(String account_name) {
+        this.account_name = account_name;
     }
 
-    public String getAccountType() {
-        return accountType;
+    public String getAccount_type() {
+        return account_type;
     }
 
-    public void setAccountType(String accountType) {
-        this.accountType = accountType;
+    public void setAccount_type(String account_type) {
+        this.account_type = account_type;
     }
 
     public BigDecimal getBalance() {
@@ -66,19 +66,19 @@ public class Account {
         this.balance = balance;
     }
 
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
+    public LocalDateTime getCreated_at() {
+        return created_at;
     }
 
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
+    public void setCreated_at(LocalDateTime created_at) {
+        this.created_at = created_at;
     }
 
-    public LocalDateTime getUpdatedAt() {
-        return updatedAt;
+    public LocalDateTime getUpdated_at() {
+        return updated_at;
     }
 
-    public void setUpdatedAt(LocalDateTime updatedAt) {
-        this.updatedAt = updatedAt;
+    public void setUpdated_at(LocalDateTime updated_at) {
+        this.updated_at = updated_at;
     }
 }

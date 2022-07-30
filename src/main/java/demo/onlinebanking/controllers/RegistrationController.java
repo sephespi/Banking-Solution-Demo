@@ -37,20 +37,20 @@ public class RegistrationController {
     @PostMapping("/register")
     public ModelAndView register(@Valid @ModelAttribute("registerUser")User user,
                                  BindingResult result,
-                                 @RequestParam("firstName") String firstName,
-                                 @RequestParam("lastName") String lastName,
+                                 @RequestParam("first_name") String first_name,
+                                 @RequestParam("last_name") String last_name,
                                  @RequestParam("email") String email,
                                  @RequestParam("password") String password,
-                                 @RequestParam("confirmPassword") String confirmPassword) throws MessagingException {
+                                 @RequestParam("confirm_password") String confirm_password) throws MessagingException {
 
         ModelAndView registerPage = new ModelAndView("register");
 
-        if(result.hasErrors()&&confirmPassword.isEmpty()){
+        if(result.hasErrors()&&confirm_password.isEmpty()){
             registerPage.addObject("error", "Please confirm your password");
             return registerPage;
         }
 
-        if(!password.equals(confirmPassword)){
+        if(!password.equals(confirm_password)){
             registerPage.addObject("passwordMismatch", "Password do not match");
             return registerPage;
         }
@@ -65,7 +65,7 @@ public class RegistrationController {
 
         String hashedPassword = BCrypt.hashpw(password, BCrypt.gensalt());
 
-        userRepository.registerUser(firstName,lastName, email, hashedPassword, token, code);
+        userRepository.registerUser(first_name,last_name, email, hashedPassword, token, code);
 
         MailMessenger.htmlMailMessenger("no-reply@jabilee.com",email,"Account Verification", emailBody);
 

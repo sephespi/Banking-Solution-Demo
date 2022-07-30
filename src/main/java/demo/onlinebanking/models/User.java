@@ -12,13 +12,13 @@ import java.time.LocalDateTime;
 public class User {
 
     @Id
-    private int userId;
+    private int user_id;
     @NotEmpty(message = "First name is required")
     @Size(min = 3, message = "First name must be at least 3 characters")
-    private String firstName;
+    private String first_name;
     @NotEmpty(message = "Last name is required")
     @Size(min = 3, message = "Last name must be at least 3 characters")
-    private String lastName;
+    private String last_name;
     @Email
     @NotEmpty(message = "Email address is required")
     @Pattern(regexp = "([a-zA-Z0-9]+(?:[._+-][a-zA-Z0-9]+)*)@([a-zA-Z0-9]+(?:[.-][a-zA-Z0-9]+)*[.][a-zA-Z]{2,})", message = "Enter a valid email address")
@@ -27,36 +27,36 @@ public class User {
     @NotNull
     private String password;
     @Transient
-    private String confirmPassword;
+    private String confirm_password;
     private String token;
     private String code;
     private int verified;
-    private LocalDate verifiedAt;
-    private LocalDateTime createdAt;
-    private LocalDateTime updatedAt;
+    private LocalDate verified_at;
+    private LocalDateTime created_at;
+    private LocalDateTime updated_at;
 
-    public int getUserId() {
-        return userId;
+    public int getUser_id() {
+        return user_id;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setUser_id(int user_id) {
+        this.user_id = user_id;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getFirst_name() {
+        return first_name;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setFirst_name(String first_name) {
+        this.first_name = first_name;
     }
 
-    public String getLastName() {
-        return lastName;
+    public String getLast_name() {
+        return last_name;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setLast_name(String last_name) {
+        this.last_name = last_name;
     }
 
     public String getEmail() {
@@ -75,12 +75,12 @@ public class User {
         this.password = password;
     }
 
-    public String getConfirmPassword() {
-        return confirmPassword;
+    public String getConfirm_password() {
+        return confirm_password;
     }
 
-    public void setConfirmPassword(String confirmPassword) {
-        this.confirmPassword = confirmPassword;
+    public void setConfirm_password(String confirm_password) {
+        this.confirm_password = confirm_password;
     }
 
     public String getToken() {
@@ -107,27 +107,27 @@ public class User {
         this.verified = verified;
     }
 
-    public LocalDate getVerifiedAt() {
-        return verifiedAt;
+    public LocalDate getVerified_at() {
+        return verified_at;
     }
 
-    public void setVerifiedAt(LocalDate verifiedAt) {
-        this.verifiedAt = verifiedAt;
+    public void setVerified_at(LocalDate verified_at) {
+        this.verified_at = verified_at;
     }
 
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
+    public LocalDateTime getCreated_at() {
+        return created_at;
     }
 
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
+    public void setCreated_at(LocalDateTime created_at) {
+        this.created_at = created_at;
     }
 
-    public LocalDateTime getUpdatedAt() {
-        return updatedAt;
+    public LocalDateTime getUpdated_at() {
+        return updated_at;
     }
 
-    public void setUpdatedAt(LocalDateTime updatedAt) {
-        this.updatedAt = updatedAt;
+    public void setUpdated_at(LocalDateTime updated_at) {
+        this.updated_at = updated_at;
     }
 }

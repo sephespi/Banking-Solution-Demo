@@ -12,10 +12,10 @@ import java.util.List;
 @Repository
 public interface AccountRepository extends CrudRepository<Account, Integer> {
 
-    @Query(value = "SELECT * FROM accounts WHERE userId = :userId", nativeQuery = true)
-    List<Account> getUserAccountById(@Param("userId") int userId);
+    @Query(value = "SELECT * FROM accounts WHERE user_id = :user_id", nativeQuery = true)
+    List<Account> getUserAccountById(@Param("user_id") int user_id);
 
-    @Query(value = "SELECT balance FROM accounts WHERE userId = :userId", nativeQuery = true)
-    BigDecimal getTotalBalance(@Param("userId") int userId);
+    @Query(value = "SELECT balance FROM accounts WHERE user_id = :user_id", nativeQuery = true)
+    BigDecimal getTotalBalance(@Param("user_id") int user_id);
 
 }

@@ -40,13 +40,13 @@
                 <div class="row">
 
                     <div class="form-group col">
-                        <form:input type="text" path="firstName" class="form-control form-control-lg" placeholder="Enter First Name"/>
-                        <form:errors path="firstName" class="text-white bg-danger"/>
+                        <form:input type="text" path="first_name" class="form-control form-control-lg" placeholder="Enter First Name"/>
+                        <form:errors path="first_name" class="text-white bg-danger"/>
                     </div>
 
                     <div class="form-group col">
-                        <form:input type="text" path="lastName" class="form-control form-control-lg" placeholder="Enter Last Name"/>
-                        <form:errors path="lastName" class="text-white bg-danger"/>
+                        <form:input type="text" path="last_name" class="form-control form-control-lg" placeholder="Enter Last Name"/>
+                        <form:errors path="last_name" class="text-white bg-danger"/>
                     </div>
 
                 </div>
@@ -64,8 +64,8 @@
                     </div>
 
                     <div class="form-group col">
-                        <input type="password" name="confirmPassword" class="form-control form-control-lg" placeholder="Confirm Password"/>
-                        <small class="text-white bg-danger">${confirmPassword}</small>
+                        <input type="password" name="confirm_password" class="form-control form-control-lg" placeholder="Confirm Password"/>
+                        <small class="text-white bg-danger">${confirm_password}</small>
                     </div>
 
                 </div>

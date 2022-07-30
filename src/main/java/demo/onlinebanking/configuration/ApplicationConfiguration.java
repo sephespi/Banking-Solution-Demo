@@ -14,17 +14,18 @@ public class ApplicationConfiguration extends WebMvcConfigurationSupport {
 
     @Override
     protected void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("css/**","images/**","js/**").
-                addResourceLocations("classpath:/static/css/","classpath:/static/images/","classpath:/static/js/");
+        registry.addResourceHandler("css/**","images/**", "js/**")
+                .addResourceLocations("classpath:/static/css/", "classpath:/static/images/", "classpath:/static/js/");
     }
 
     @Bean
-    InternalResourceViewResolver resolver(){
-        InternalResourceViewResolver resolver = new InternalResourceViewResolver();
-        resolver.setPrefix("/WEB-INF/jsp/");
-        resolver.setSuffix(".jsp");
-        resolver.setViewClass(JstlView.class);
-        return resolver;
+    public InternalResourceViewResolver viewResolver() {
+        InternalResourceViewResolver jspViewResolver = new InternalResourceViewResolver();
+        jspViewResolver.setPrefix("/WEB-INF/jsp/");
+        jspViewResolver.setSuffix(".jsp");
+        jspViewResolver.setViewClass(JstlView.class);
+
+        return jspViewResolver;
     }
 
 }

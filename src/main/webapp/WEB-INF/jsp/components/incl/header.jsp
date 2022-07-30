@@ -1,6 +1,6 @@
-    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-    <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-    <%@ taglib prefix = "fn" uri = "http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix = "fn" uri = "http://java.sun.com/jsp/jstl/functions" %>
 
     <!-- Main Page Header -->
     <header class="main-page-header mb-3 bg-primary">
@@ -8,7 +8,7 @@
         <div class="container d-flex align-items-center">
             <!-- Company Name -->
             <div class="company-name">
-                Easy-Way Bank
+                JE Banking Solutions
             </div>
             <!-- Company Name -->
 
