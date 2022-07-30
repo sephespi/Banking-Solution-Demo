@@ -18,7 +18,7 @@
         <h2 class="me-auto">Total Accounts Balance:</h2>
         <h2 class="ms-auto">
             <c:if test="${requestScope.totalBalance != null}">
-                <c:out value="${totalBalance}"/>
+                PHP <c:out value="${totalBalance}"/>
             </c:if>
         </h2>
     </div>
@@ -43,7 +43,7 @@
                         <li class="list-group-item d-flex">Account Name <span class="ms-auto"><b>${account.account_name}</b></span></li>
                         <li class="list-group-item d-flex">Account Number <span class="ms-auto"><b>${account.account_number}</b></span></li>
                         <li class="list-group-item d-flex">Account Type <span class="ms-auto"><b>${account.account_type}</b></span></li>
-                        <li class="list-group-item d-flex">Account Balance <span class="ms-auto"><b>${account.balance}</b></span></li>
+                        <li class="list-group-item d-flex">Account Balance <span class="ms-auto">PHP <b>${account.balance}</b></span></li>
                         <li class="list-group-item d-flex">Creation Date <span class="ms-auto"><b>${account.created_at}</b></span></li>
                     </ul>
 

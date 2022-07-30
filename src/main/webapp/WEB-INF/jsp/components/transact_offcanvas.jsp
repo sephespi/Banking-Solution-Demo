@@ -6,7 +6,7 @@
 
     <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
         <div class="offcanvas-header">
-            <h5 class="offcanvas-title text-white" id="offcanvasExampleLabel">Transact</h5>
+            <h5 class="offcanvas-title text-white" id="offcanvasExampleLabel">Transaction</h5>
             <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
 
@@ -17,10 +17,10 @@
 
             <select name="transact-type" class="form-control my-3" id="transact-type">
                 <option value="">-- Select Transaction Type --</option>
-                <option value="Payment">Payment</option>
-                <option value="Transfer">Transfer</option>
-                <option value="Deposit">Deposit</option>
-                <option value="Withdraw">Withdraw</option>
+                <option value="payment">Payment</option>
+                <option value="transfer">Transfer</option>
+                <option value="deposit">Deposit</option>
+                <option value="withdraw">Withdraw</option>
             </select>
 
             <c:import url="components/transact_forms/payment_form.jsp"/>
