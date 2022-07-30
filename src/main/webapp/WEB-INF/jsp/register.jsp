@@ -57,7 +57,7 @@
                 </div>
 
                 <div class="row">
-                    <!-- From Group -->
+
                     <div class="form-group col">
                         <form:input type="password" path="password" class="form-control form-control-lg" placeholder="Enter Password"/>
                         <form:errors path="password" class="text-white bg-danger"/>

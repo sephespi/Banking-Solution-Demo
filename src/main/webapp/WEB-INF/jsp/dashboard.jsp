@@ -16,49 +16,38 @@
 </head>
 <body>
 
-    <!-- Header -->
     <c:import url="components/incl/header.jsp"/>
 
-
-    <!-- Transact Offcanvas: pulls from the left -->
     <c:import url="components/transact_offcanvas.jsp"/>
 
-    <!-- Add Accounts Offcanvas: pulls from the right -->
     <c:import url="components/add_account_offcanvas.jsp"/>
 
-    <!-- Container -->
     <div class="container">
 
-            <!-- Display Message -->
             <c:if test="${success != null}">
                 <div class="alert alert-info text-center border border-info">
                     <b>${success}</b>
                 </div>
             </c:if>
-            <!-- End Of Display Message -->
 
-            <!-- Display Message -->
             <c:if test="${error!= null}">
                 <div class="alert alert-danger text-center border border-danger">
                     <b>${error}</b>
                 </div>
             </c:if>
-            <!-- End Of Display Message -->
+
     </div>
-    <!-- End Of Container-->
 
     <c:choose>
         <c:when test="${fn:length(userAccounts) > 0 }">
-            <!-- Display Accounts --->
+
             <c:import url="components/accounts_display.jsp"/>
         </c:when>
         <c:otherwise>
-            <!-- Dont Display Accounts -->
+
             <c:import url="components/no_accounts_display.jsp"/>
         </c:otherwise>
     </c:choose>
 
-
-    <!-- Footer -->
    <c:import url="components/incl/footer.jsp"/>
 

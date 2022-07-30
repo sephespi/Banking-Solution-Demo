@@ -36,7 +36,7 @@ public interface UserRepository extends CrudRepository<User, Integer> {
                       @Param("code")int code);
 
     @Modifying
-    @Query(value = "UPDATE users SET token=null, code=null, verified=1, verified_at=NOW(), created_at=NOW(), updated_at=NOW() WHERE " +
+    @Query(value = "UPDATE users SET token=null, code=null, verified=1, verified_at=NOW(), updated_at=NOW() WHERE " +
             "token= :token AND code= :code", nativeQuery = true)
     @Transactional
     void verifyAccount(@Param("token")String token, @Param("code") String code);

@@ -51,7 +51,7 @@
             </p>
 
             <hr>
-            <!-- Back To Login Page -->
+
             <a href="/login" class="btn btn-sm btn-danger">
                 <i class="fa fa-arrow-alt-circle-left me-1"></i> Back
             </a>

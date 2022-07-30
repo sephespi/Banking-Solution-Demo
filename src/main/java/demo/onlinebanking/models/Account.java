@@ -1,5 +1,7 @@
 package demo.onlinebanking.models;
 
+import org.hibernate.validator.constraints.UniqueElements;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.math.BigDecimal;
@@ -9,7 +11,7 @@ import java.time.LocalDateTime;
 public class Account {
 
     @Id
-    private int accountId;
+    private int account_id;
     private int user_id;
     private String account_number;
     private String account_name;
@@ -18,12 +20,12 @@ public class Account {
     private LocalDateTime created_at;
     private LocalDateTime updated_at;
 
-    public int getAccountId() {
-        return accountId;
+    public int getAccount_id() {
+        return account_id;
     }
 
-    public void setAccountId(int accountId) {
-        this.accountId = accountId;
+    public void setAccount_id(int account_id) {
+        this.account_id = account_id;
     }
 
     public int getUser_id() {

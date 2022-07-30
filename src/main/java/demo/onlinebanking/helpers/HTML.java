@@ -11,7 +11,7 @@ public class HTML {
                 "    <meta charset='UTF-8'>\n" +
                 "    <meta http-equiv='X-UA-Compatible' content='IE=edge'>\n" +
                 "    <meta name='viewport' content='width=device-width, initial-scale=1.0'>\n" +
-                "    <!-- <link rel='stylesheet' href='css/email.css'> -->\n" +
+                "\n" +
                 "    <title>Document</title>\n" +
                 "    <style>\n" +
                 "        *{\n" +
@@ -19,7 +19,7 @@ public class HTML {
                 "            font-family: Comfortaa;\n" +
                 "        }\n" +
                 "\n" +
-                "        /* Main Body Styling */\n" +
+                "\n" +
                 "        body{\n" +
                 "            height: 100vh;\n" +
                 "            background-color: rgb(212, 222, 230);\n" +
@@ -28,7 +28,7 @@ public class HTML {
                 "            justify-content: center;\n" +
                 "        }\n" +
                 "\n" +
-                "        /* <!-- Wrapper -->*/\n" +
+                "\n" +
                 "        .wrapper{\n" +
                 "            width: 550px;\n" +
                 "            height: auto;\n" +
@@ -38,12 +38,12 @@ public class HTML {
                 "\n" +
                 "        }\n" +
                 "\n" +
-                "        /* <!-- Email MSG Header --> */\n" +
+                "\n" +
                 "        .email-msg-header{\n" +
                 "            text-align: center;\n" +
                 "        }\n" +
                 "\n" +
-                "        /* <!-- Company Name --> */\n" +
+                "\n" +
                 "        .company-name{\n" +
                 "            width: 100%;\n" +
                 "            font-size: 35px;\n" +
@@ -51,12 +51,12 @@ public class HTML {
                 "            text-align: center;\n" +
                 "        }\n" +
                 "\n" +
-                "        /* <!-- Welcome Text --> */\n" +
+                "\n" +
                 "        .welcome-text{\n" +
                 "            text-align: center;\n" +
                 "        }\n" +
                 "\n" +
-                "        /* <!-- Verify Account Button --> */\n" +
+                "\n" +
                 "        .verify-account-btn{\n" +
                 "            padding: 15px;\n" +
                 "            background-color: rgb(0, 109, 252);\n" +
@@ -65,7 +65,7 @@ public class HTML {
                 "            border-radius: 5px;\n" +
                 "        }\n" +
                 "\n" +
-                "        /* <!-- Copy Right Wrapper --> */\n" +
+                "\n" +
                 "        .copy-right{\n" +
                 "            padding: 15px;\n" +
                 "            color: gray;\n" +
@@ -79,39 +79,39 @@ public class HTML {
                 "</head>\n" +
                 "<body>\n" +
                 "\n" +
-                "    <!-- Wrapper -->\n" +
+                "\n" +
                 "    <div class='wrapper'>\n" +
-                "        <!-- Email MSG Header -->\n" +
+                "\n" +
                 "        <h2 class='email-msg-header'>\n" +
                 "            Welcome and Thank You for Choosing  \n" +
                 "        </h2>\n" +
-                "        <!-- End Of Email MSG Header -->\n" +
                 "\n" +
-                "        <!-- Company Name -->\n" +
-                "        <div class='company-name'>Easy Way Bank</div>\n" +
-                "        <!-- End Of Company Name -->\n" +
+                "\n" +
+                "\n" +
+                "        <div class='company-name'>JE Online Banking</div>\n" +
+                "\n" +
                 "        <hr>\n" +
                 "\n" +
-                "        <!-- Welcome Text -->\n" +
+                "\n" +
                 "        <p class='welcome-text'>\n" +
                 "            Your Account has been successfully registered, please click below to verify your account \n" +
                 "        </p>\n" +
-                "        <!-- End Of Welcome Text -->\n" +
+                "\n" +
                 "        <br>\n" +
                 "        <br>\n" +
                 "\n" +
-                "        <!-- Verify Account Button -->\n" +
+                "\n" +
                 "        <center><a href='" + url + "' class='verify-account-btn' role='button'>Verify Account</a></center>\n" +
-                "        <!-- End Of Verify Account Button -->\n" +
                 "\n" +
-                "        <!-- Copy Right Wrapper -->\n" +
+                "\n" +
+                "\n" +
                 "        <div class='copy-right'>\n" +
                 "            &copy; Copy Right 2055. All Rights Reserved.\n" +
                 "        </div>\n" +
-                "        <!-- End Of Copy Right Wrapper -->\n" +
+                "\n" +
                 "\n" +
                 "    </div>\n" +
-                "    <!-- End Of Wrapper -->\n" +
+                "\n" +
                 "\n" +
                 "    \n" +
                 "</body>\n" +
