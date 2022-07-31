@@ -26,13 +26,13 @@
 
             <c:if test="${success != null}">
                 <div class="alert alert-info text-center border border-info">
-                    <b>${success}</b>
+                    <strong>${success}</strong>
                 </div>
             </c:if>
 
             <c:if test="${error!= null}">
                 <div class="alert alert-danger text-center border border-danger">
-                    <b>${error}</b>
+                    <strong>${error}</strong>
                 </div>
             </c:if>
 

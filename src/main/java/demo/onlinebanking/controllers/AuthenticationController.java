@@ -14,57 +14,60 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpSession;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 @Controller
 public class AuthenticationController {
 
+    private static final Logger logger = Logger.getLogger(AuthenticationController.class.getName());
+
+    String login = "login";
+    String error = "error";
     @Autowired
     private UserRepository userRepository;
 
-    final String LOGIN = "login";
-    final String ERROR = "error";
-
     @GetMapping("/login")
-    public ModelAndView getLoginPage(){
-        ModelAndView getLoginPage = new ModelAndView(LOGIN);
+    public ModelAndView getLoginPage() {
+        ModelAndView getLoginPage = new ModelAndView(login);
         String token = Token.generateToken();
         getLoginPage.addObject("token", token);
         getLoginPage.addObject("PageTitle", "Login");
-        System.out.println("Location: Login Page");
+        logger.log(Level.INFO,"Location: Login Page");
         return getLoginPage;
     }
 
     @PostMapping("/login")
     public String login(@RequestParam("email") String email,
                         @RequestParam("password") String password,
-                        @RequestParam(value = "token",required = false)String token,
+                        @RequestParam(value = "token", required = false) String token,
                         Model model,
-                        HttpSession session){
+                        HttpSession session) {
 
-        if(email.isEmpty() || password.isEmpty()){
-            model.addAttribute(ERROR, "Username or Password cannot be empty");
-            return LOGIN;
+        if (email.isEmpty() || password.isEmpty()) {
+            model.addAttribute(error, "Username or Password cannot be empty");
+            return login;
         }
 
         String getEmailFromDatabase = userRepository.getUserEmail(email);
 
-        if(getEmailFromDatabase != null ){
+        if (getEmailFromDatabase != null) {
             String getPasswordFromDatabase = userRepository.getUserPassword(getEmailFromDatabase);
-            if(!BCrypt.checkpw(password, getPasswordFromDatabase)){
-                model.addAttribute(ERROR, "Incorrect Username or Password");
-                return LOGIN;
+            if (!BCrypt.checkpw(password, getPasswordFromDatabase)) {
+                model.addAttribute(error, "Incorrect Username or Password");
+                return login;
             }
-        }else{
-            model.addAttribute(ERROR, "Something went wrong");
-            return ERROR;
+        } else {
+            model.addAttribute(error, "Something went wrong");
+            return error;
         }
 
         int verified = userRepository.isVerified(getEmailFromDatabase);
 
-        if(verified != 1){
+        if (verified != 1) {
             String msg = "This account is not verified. Please check your email and verify your account";
-            model.addAttribute(ERROR, msg);
-            return LOGIN;
+            model.addAttribute(error, msg);
+            return login;
         }
 
         User user = userRepository.getUserDetails(getEmailFromDatabase);
@@ -78,9 +81,9 @@ public class AuthenticationController {
     }
 
     @GetMapping("/logout")
-    public String logout(HttpSession session, RedirectAttributes redirectAttributes){
+    public String logout(HttpSession session, RedirectAttributes redirectAttributes) {
         session.invalidate();
-        redirectAttributes.addFlashAttribute("logged_out","User logged out successfully");
+        redirectAttributes.addFlashAttribute("logged_out", "User logged out successfully");
         return "redirect:/login";
     }
 

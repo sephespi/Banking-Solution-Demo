@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+@SuppressWarnings("all")
 @Repository
 public interface TransactionHistoryRepository extends CrudRepository<TransactionHistory, Integer> {
 

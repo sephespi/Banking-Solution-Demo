@@ -5,6 +5,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import java.time.LocalDateTime;
 
+@SuppressWarnings("all")
 @Entity
 @Table(name = "v_transaction_history")
 public class TransactionHistory {
@@ -15,9 +16,9 @@ public class TransactionHistory {
     private int user_id;
     private String transaction_type;
     private double amount;
-    private String  source;
-    private String  status;
-    private String  reason_code;
+    private String source;
+    private String status;
+    private String reason_code;
     private LocalDateTime created_at;
 
     public int getTransaction_id() {

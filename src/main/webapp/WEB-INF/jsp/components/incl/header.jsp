@@ -11,13 +11,15 @@
             </div>
 
             <nav class="navigation">
+            <ul>
                 <li><a href="/app/dashboard">Dashboard</a></li>
                 <li><a href="/app/payment_history">Payment History</a></li>
                 <li><a href="/app/transact_history">Transaction History</a></li>
+            </ul>
             </nav>
 
             <div class="display-name ms-auto text-white">
-                <i class="fa fa-circle text-success me-2"></i> Welcome: <span>${user.first_name}  ${user.last_name}</span>
+                <em class="fa fa-circle text-success me-2"></em> Welcome: <span>${user.first_name}  ${user.last_name}</span>
             </div>
 
             <a href="/logout" class="btn btn-sm text-white ms-2">

@@ -19,24 +19,24 @@
         <div class="card-body">
 
             <h1 class="form-header card-title mb-3">
-                <i class="fa fa-user-circle"></i> Login
+                <em class="fa fa-user-circle"></em> Login
             </h1>
 
             <c:if test="${requestScope.success != null}">
                 <div class="alert alert-success text-center border border-success">
-                    <b>${requestScope.success}</b>
+                    <strong>${requestScope.success}</strong>
                 </div>
             </c:if>
 
             <c:if test="${requestScope.error != null}">
                 <div class="alert alert-danger text-center border border-danger">
-                    <b>${requestScope.error}</b>
+                    <strong>${requestScope.error}</strong>
                 </div>
             </c:if>
 
             <c:if test="${logged_out != null}">
                 <div class="alert alert-info text-center border border-info">
-                    <b>${logged_out}</b>
+                    <strong>${logged_out}</strong>
                 </div>
             </c:if>
 
@@ -65,7 +65,7 @@
             </p>
 
             <small class="text-warning">
-                <i class="fa fa-arrow-alt-circle-left"></i> <a href="/" class="btn btn-sm text-warning">Back</a>
+                <em class="fa fa-arrow-alt-circle-left"></em> <a href="/" class="btn btn-sm text-warning">Back</a>
             </small>
 
         </div>

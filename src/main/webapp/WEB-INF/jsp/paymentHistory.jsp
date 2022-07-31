@@ -30,6 +30,7 @@
             <c:if test="${requestScope.payment_history != null}">
 
                 <table class="table text-center table-striped">
+                    <caption>PaymentHistory</caption>
                     <tr>
                         <th>Record Number</th>
                         <th>Beneficiary</th>

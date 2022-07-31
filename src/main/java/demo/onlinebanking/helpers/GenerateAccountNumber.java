@@ -1,12 +1,15 @@
 package demo.onlinebanking.helpers;
 
 import java.security.SecureRandom;
-import java.util.Random;
 
 public class GenerateAccountNumber {
 
+    private GenerateAccountNumber(){
+    }
+
     private static final SecureRandom RANDOM = new SecureRandom();
-    public static int generateAccountNumber(){
+
+    public static int generateAccountNumber() {
         int accountNumber;
 
         int bound = 1000;

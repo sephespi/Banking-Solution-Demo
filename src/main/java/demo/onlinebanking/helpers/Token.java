@@ -4,10 +4,12 @@ import java.util.UUID;
 
 public class Token {
 
-    public static String generateToken(){
-        String token = UUID.randomUUID().toString();
+    private Token(){
+    }
 
-        return token;
+    public static String generateToken() {
+
+        return UUID.randomUUID().toString();
     }
 
 }

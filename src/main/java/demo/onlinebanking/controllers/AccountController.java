@@ -12,6 +12,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpSession;
 
+
 @Controller
 @RequestMapping("/account")
 public class AccountController {
@@ -20,13 +21,13 @@ public class AccountController {
     private AccountRepository accountRepository;
 
     @PostMapping("/create_account")
-    public String createAccount(@RequestParam("account_name") String account_name,
-                                @RequestParam("account_type") String account_type,
+    public String createAccount(@RequestParam("account_name") String accountName,
+                                @RequestParam("account_type") String accountType,
                                 RedirectAttributes redirectAttributes,
                                 HttpSession session) {
 
-        if(account_name.isEmpty() || account_type.isEmpty()) {
-            redirectAttributes.addFlashAttribute("error","Account Name and Account Type is required");
+        if (accountName.isEmpty() || accountType.isEmpty()) {
+            redirectAttributes.addFlashAttribute("error", "Account Name and Account Type is required");
             return "redirect:/app/dashboard";
         }
 
@@ -36,7 +37,7 @@ public class AccountController {
 
         String newAccountNumber = Integer.toString(setAccountNumber);
 
-        accountRepository.createNewAccount(user.getUser_id(), newAccountNumber, account_name, account_type);
+        accountRepository.createNewAccount(user.getUser_id(), newAccountNumber, accountName, accountType);
 
         redirectAttributes.addFlashAttribute("success", "New account created successfully");
 

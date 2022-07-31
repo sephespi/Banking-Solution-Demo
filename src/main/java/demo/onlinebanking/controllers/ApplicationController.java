@@ -21,16 +21,13 @@ import java.util.List;
 @RequestMapping("/app")
 public class ApplicationController {
 
+    User user;
     @Autowired
     private AccountRepository accountRepository;
-
     @Autowired
     private PaymentHistoryRepository paymentHistoryRepository;
-
     @Autowired
     private TransactionHistoryRepository transactionHistoryRepository;
-
-    User user;
 
     @GetMapping("/dashboard")
     public ModelAndView getDashboard(HttpSession session) {
@@ -55,14 +52,14 @@ public class ApplicationController {
 
         List<PaymentHistory> userPaymentHistory = paymentHistoryRepository.getPaymentRecordsById(user.getUser_id());
 
-        getPaymentHistoryPage.addObject("payment_history",userPaymentHistory);
+        getPaymentHistoryPage.addObject("payment_history", userPaymentHistory);
 
         return getPaymentHistoryPage;
 
     }
 
     @GetMapping("transact_history")
-    public ModelAndView getTransactHistory(HttpSession session){
+    public ModelAndView getTransactHistory(HttpSession session) {
         ModelAndView getTransactHistoryPage = new ModelAndView("transactHistory");
         user = (User) session.getAttribute("user");
 

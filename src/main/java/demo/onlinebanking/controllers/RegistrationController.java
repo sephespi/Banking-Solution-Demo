@@ -18,42 +18,44 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.mail.MessagingException;
 import javax.validation.Valid;
 import java.security.SecureRandom;
-import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-@SuppressWarnings("ALL")
+
 @Controller
 public class RegistrationController {
 
+    private final Logger logger = Logger.getLogger(RegistrationController.class.getName());
+
+    private static final SecureRandom RANDOM = new SecureRandom();
     @Autowired
     private UserRepository userRepository;
 
-    private static final SecureRandom RANDOM = new SecureRandom();
-
     @GetMapping("/register")
-    public ModelAndView getRegisterPage(){
+    public ModelAndView getRegisterPage() {
         ModelAndView getRegisterPage = new ModelAndView("register");
         getRegisterPage.addObject("PageTitle", "Register");
-        System.out.println("Location: Register Page");
+        logger.log(Level.INFO,"Location: Register Page");
         return getRegisterPage;
     }
 
     @PostMapping("/register")
-    public ModelAndView register(@Valid @ModelAttribute("registerUser")User user,
+    public ModelAndView register(@Valid @ModelAttribute("registerUser") User user,
                                  BindingResult result,
-                                 @RequestParam("first_name") String first_name,
-                                 @RequestParam("last_name") String last_name,
+                                 @RequestParam("first_name") String firstName,
+                                 @RequestParam("last_name") String lastName,
                                  @RequestParam("email") String email,
                                  @RequestParam("password") String password,
-                                 @RequestParam("confirm_password") String confirm_password) throws MessagingException {
+                                 @RequestParam("confirm_password") String confirmPassword) throws MessagingException {
 
         ModelAndView registerPage = new ModelAndView("register");
 
-        if(result.hasErrors()&&confirm_password.isEmpty()){
+        if (result.hasErrors() && confirmPassword.isEmpty()) {
             registerPage.addObject("error", "Please confirm your password");
             return registerPage;
         }
 
-        if(!password.equals(confirm_password)){
+        if (!password.equals(confirmPassword)) {
             registerPage.addObject("passwordMismatch", "Password do not match");
             return registerPage;
         }
@@ -67,9 +69,9 @@ public class RegistrationController {
 
         String hashedPassword = BCrypt.hashpw(password, BCrypt.gensalt());
 
-        userRepository.registerUser(first_name,last_name, email, hashedPassword, token, code);
+        userRepository.registerUser(firstName, lastName, email, hashedPassword, token, code);
 
-        MailMessenger.htmlMailMessenger("no-reply@jabilee.com",email,"Account Verification", emailBody);
+        MailMessenger.htmlMailMessenger("no-reply@jabilee.com", email, "Account Verification", emailBody);
 
         String successMessage = "Account successfully registered! Please check your email to verify your account.";
         registerPage.addObject("success", successMessage);

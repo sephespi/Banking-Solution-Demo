@@ -9,6 +9,8 @@ import javax.mail.internet.MimeMessage;
 
 public class MailMessenger {
 
+    private MailMessenger() {
+    }
     public static void htmlMailMessenger(String from, String to, String subject, String body) throws MessagingException {
 
         JavaMailSender sender = MailConfiguration.getMailConfiguration();

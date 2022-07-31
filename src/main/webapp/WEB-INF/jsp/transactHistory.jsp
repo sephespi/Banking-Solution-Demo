@@ -29,6 +29,7 @@
             <div class="card-body">
                 <c:if test="${requestScope.transact_history != null}">
                     <table class="table text-center table-striped">
+                    <caption>Transaction History</caption>
                     <tr>
                         <th>Transaction ID</th>
                         <th>Transaction Type</th>

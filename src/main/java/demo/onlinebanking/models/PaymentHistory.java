@@ -5,6 +5,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import java.time.LocalDateTime;
 
+@SuppressWarnings("all")
 @Entity
 @Table(name = "v_payments")
 public class PaymentHistory {

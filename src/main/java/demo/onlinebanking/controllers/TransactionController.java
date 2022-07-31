@@ -14,18 +14,11 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.servlet.http.HttpSession;
 import java.time.LocalDateTime;
 
+
+@SuppressWarnings("all")
 @Controller
 @RequestMapping("/transact")
 public class TransactionController {
-
-    @Autowired
-    private AccountRepository accountRepository;
-
-    @Autowired
-    private PaymentRepository paymentRepository;
-
-    @Autowired
-    private TransactRepository transactRepository;
 
     String errorMsg;
     String successMsg;
@@ -33,14 +26,20 @@ public class TransactionController {
     double currentBalance;
     double newBalance;
     LocalDateTime currentDateTime = LocalDateTime.now();
+    @Autowired
+    private AccountRepository accountRepository;
+    @Autowired
+    private PaymentRepository paymentRepository;
+    @Autowired
+    private TransactRepository transactRepository;
 
     // Deposit Transaction Controller
     @PostMapping("/deposit")
-    public String deposit(@RequestParam("deposit_amount")String depositAmount,
+    public String deposit(@RequestParam("deposit_amount") String depositAmount,
                           @RequestParam("account_id") String accountID,
-                          HttpSession session, RedirectAttributes redirectAttributes){
+                          HttpSession session, RedirectAttributes redirectAttributes) {
 
-        if(depositAmount.isEmpty() || accountID.isEmpty()){
+        if (depositAmount.isEmpty() || accountID.isEmpty()) {
             errorMsg = "Deposit amount or Account cannot be empty";
             redirectAttributes.addFlashAttribute("error", errorMsg);
             return "redirect:/app/dashboard";
@@ -48,51 +47,51 @@ public class TransactionController {
 
         user = (User) session.getAttribute("user");
 
-        int acc_id = Integer.parseInt(accountID);
+        int accountId = Integer.parseInt(accountID);
         double depositAmountValue = Double.parseDouble(depositAmount);
 
-        if(depositAmountValue < 500){
+        if (depositAmountValue < 500) {
             errorMsg = "Minimum deposit amount is 500";
             redirectAttributes.addFlashAttribute("error", errorMsg);
             return "redirect:/app/dashboard";
         }
 
-        currentBalance = accountRepository.getAccountBalance(user.getUser_id(),acc_id);
+        currentBalance = accountRepository.getAccountBalance(user.getUser_id(), accountId);
 
-        transactRepository.logTransaction(acc_id,"Deposit", depositAmountValue,"Online","Success","Deposit transaction success", currentDateTime);
+        transactRepository.logTransaction(accountId, "Deposit", depositAmountValue, "Online", "Success", "Deposit transaction success", currentDateTime);
 
         newBalance = currentBalance + depositAmountValue;
 
-        accountRepository.changeAccountBalanceById(newBalance, acc_id);
-        redirectAttributes.addFlashAttribute("success","Amount Deposited Successfully");
+        accountRepository.changeAccountBalanceById(newBalance, accountId);
+        redirectAttributes.addFlashAttribute("success", "Amount Deposited Successfully");
         return "redirect:/app/dashboard";
 
     }
 
     // Transfer Transaction Controller
     @PostMapping("/transfer")
-    public String transfer(@RequestParam("transfer_from")String transfer_from,
-                           @RequestParam("transfer_to") String transfer_to,
-                           @RequestParam("transfer_amount")String transfer_amount,
-                           HttpSession session, RedirectAttributes redirectAttributes){
+    public String transfer(@RequestParam("transfer_from") String transferFrom,
+                           @RequestParam("transfer_to") String transferTo,
+                           @RequestParam("transfer_amount") String transferAmount,
+                           HttpSession session, RedirectAttributes redirectAttributes) {
 
-        if(transfer_from.isEmpty() || transfer_to.isEmpty() || transfer_amount.isEmpty()){
+        if (transferFrom.isEmpty() || transferTo.isEmpty() || transferAmount.isEmpty()) {
             errorMsg = "Transfer account from and to are required. Transfer amount also cannot be empty";
             redirectAttributes.addFlashAttribute("error", errorMsg);
             return "redirect:/app/dashboard";
         }
 
-        int transferFromId = Integer.parseInt(transfer_from);
-        int transferToId = Integer.parseInt(transfer_to);
-        double transferAmount = Double.parseDouble(transfer_amount);
+        int transferFromId = Integer.parseInt(transferFrom);
+        int transferToId = Integer.parseInt(transferTo);
+        double transAmount = Double.parseDouble(transferAmount);
 
-        if(transferFromId == transferToId) {
+        if (transferFromId == transferToId) {
             errorMsg = "Transferring from and to same account. Transaction failed.";
             redirectAttributes.addFlashAttribute("error", errorMsg);
             return "redirect:/app/dashboard";
         }
 
-        if (transferAmount < 500){
+        if (transAmount < 500) {
             errorMsg = "Minimum transfer amount is 500";
             redirectAttributes.addFlashAttribute("error", errorMsg);
             return "redirect:/app/dashboard";
@@ -102,23 +101,23 @@ public class TransactionController {
 
         double currentBalanceTransferFrom = accountRepository.getAccountBalance(user.getUser_id(), transferFromId);
 
-        if (currentBalanceTransferFrom < transferAmount){
+        if (currentBalanceTransferFrom < transAmount) {
             errorMsg = "You have insufficient funds to transfer";
-            transactRepository.logTransaction(transferFromId,"Transfer", transferAmount, "Online", "Failed", "Insufficient funds", currentDateTime);
+            transactRepository.logTransaction(transferFromId, "Transfer", transAmount, "Online", "Failed", "Insufficient funds", currentDateTime);
             redirectAttributes.addFlashAttribute("error", errorMsg);
             return "redirect:/app/dashboard";
         }
 
         double currentBalanceTransferTo = accountRepository.getAccountBalance(user.getUser_id(), transferToId);
 
-        double newBalanceTransferFrom = currentBalanceTransferFrom - transferAmount;
-        double newBalanceTransferTo = currentBalanceTransferTo + transferAmount;
+        double newBalanceTransferFrom = currentBalanceTransferFrom - transAmount;
+        double newBalanceTransferTo = currentBalanceTransferTo + transAmount;
 
         accountRepository.changeAccountBalanceById(newBalanceTransferFrom, transferFromId);
 
         accountRepository.changeAccountBalanceById(newBalanceTransferTo, transferToId);
 
-        transactRepository.logTransaction(transferFromId,"Transfer", transferAmount, "Online", "Success", "Transfer transaction success", currentDateTime);
+        transactRepository.logTransaction(transferFromId, "Transfer", transAmount, "Online", "Success", "Transfer transaction success", currentDateTime);
         successMsg = "Transfer transaction completed successfully";
         redirectAttributes.addFlashAttribute("success", successMsg);
         return "redirect:/app/dashboard";
@@ -127,21 +126,21 @@ public class TransactionController {
 
     // Withdrawal Transaction Controller
     @PostMapping("/withdraw")
-    public String withdraw(@RequestParam("withdrawal_amount")String withdrawalAmount,
-                           @RequestParam("account_id")String accountID,
+    public String withdraw(@RequestParam("withdrawal_amount") String withdrawalAmount,
+                           @RequestParam("account_id") String accountID,
                            HttpSession session,
-                           RedirectAttributes redirectAttributes){
+                           RedirectAttributes redirectAttributes) {
 
-        if(withdrawalAmount.isEmpty() || accountID.isEmpty()) {
+        if (withdrawalAmount.isEmpty() || accountID.isEmpty()) {
             errorMsg = "Withdrawal Amount and Account must be specified";
             redirectAttributes.addFlashAttribute("error", errorMsg);
             return "redirect:/app/dashboard";
         }
 
-        double withdrawal_amount = Double.parseDouble(withdrawalAmount);
-        int account_id = Integer.parseInt(accountID);
+        double withdrawAmount = Double.parseDouble(withdrawalAmount);
+        int accountId = Integer.parseInt(accountID);
 
-        if (withdrawal_amount < 500){
+        if (withdrawAmount < 500) {
             errorMsg = "Minimum withdraw amount is 500";
             redirectAttributes.addFlashAttribute("error", errorMsg);
             return "redirect:/app/dashboard";
@@ -149,19 +148,19 @@ public class TransactionController {
 
         user = (User) session.getAttribute("user");
 
-        currentBalance = accountRepository.getAccountBalance(user.getUser_id(), account_id);
-        newBalance = currentBalance - withdrawal_amount;
+        currentBalance = accountRepository.getAccountBalance(user.getUser_id(), accountId);
+        newBalance = currentBalance - withdrawAmount;
 
-        if (currentBalance < withdrawal_amount){
+        if (currentBalance < withdrawAmount) {
             errorMsg = "You have insufficient funds to withdraw";
-            transactRepository.logTransaction(account_id,"Withdraw", withdrawal_amount, "Online", "Failed", "Insufficient funds", currentDateTime);
+            transactRepository.logTransaction(accountId, "Withdraw", withdrawAmount, "Online", "Failed", "Insufficient funds", currentDateTime);
             redirectAttributes.addFlashAttribute("error", errorMsg);
             return "redirect:/app/dashboard";
         }
 
-        accountRepository.changeAccountBalanceById(newBalance, account_id);
+        accountRepository.changeAccountBalanceById(newBalance, accountId);
 
-        transactRepository.logTransaction(account_id,"Withdraw", withdrawal_amount, "Online", "Success", "Withdraw transaction success", currentDateTime);
+        transactRepository.logTransaction(accountId, "Withdraw", withdrawAmount, "Online", "Success", "Withdraw transaction success", currentDateTime);
         successMsg = "Withdraw Transaction completed successfully!";
         redirectAttributes.addFlashAttribute("success", successMsg);
         return "redirect:/app/dashboard";
@@ -170,24 +169,24 @@ public class TransactionController {
 
     // Payment Transaction Controller
     @PostMapping("/payment")
-    public String payment(@RequestParam("beneficiary")String beneficiary,
-                          @RequestParam("account_number")String account_number,
-                          @RequestParam("account_id")String account_id,
-                          @RequestParam("reference")String reference,
-                          @RequestParam("payment_amount")String payment_amount,
+    public String payment(@RequestParam("beneficiary") String beneficiary,
+                          @RequestParam("account_number") String accountNumber,
+                          @RequestParam("account_id") String accountId,
+                          @RequestParam("reference") String reference,
+                          @RequestParam("payment_amount") String paymentAmount,
                           HttpSession session,
-                          RedirectAttributes redirectAttributes){
+                          RedirectAttributes redirectAttributes) {
 
-        if(beneficiary.isEmpty() || account_number.isEmpty() || account_id.isEmpty() || payment_amount.isEmpty()){
+        if (beneficiary.isEmpty() || accountNumber.isEmpty() || accountId.isEmpty() || paymentAmount.isEmpty()) {
             errorMsg = "All fields are required";
             redirectAttributes.addFlashAttribute("error", errorMsg);
             return "redirect:/app/dashboard";
         }
 
-        int accountID = Integer.parseInt(account_id);
-        double paymentAmount = Double.parseDouble(payment_amount);
+        int accountID = Integer.parseInt(accountId);
+        double payAmount = Double.parseDouble(paymentAmount);
 
-        if(paymentAmount == 0){
+        if (payAmount == 0) {
             errorMsg = "Payment amount cannot be zero (0). Please enter a valid amount.";
             redirectAttributes.addFlashAttribute("error", errorMsg);
             return "redirect:/app/dashboard";
@@ -197,24 +196,24 @@ public class TransactionController {
 
         currentBalance = accountRepository.getAccountBalance(user.getUser_id(), accountID);
 
-        if(currentBalance < paymentAmount){
+        if (currentBalance < payAmount) {
             errorMsg = "You have insufficient funds to perform this payment";
-            transactRepository.logTransaction(accountID,"Payment", paymentAmount, "Online", "Failed", "Insufficient funds", currentDateTime);
+            transactRepository.logTransaction(accountID, "Payment", payAmount, "Online", "Failed", "Insufficient funds", currentDateTime);
             redirectAttributes.addFlashAttribute("error", errorMsg);
             return "redirect:/app/dashboard";
         }
 
-        newBalance = currentBalance - paymentAmount;
+        newBalance = currentBalance - payAmount;
         String reasonCode = "Payment transaction completed successfully!";
-        paymentRepository.makePayment(accountID, beneficiary, account_number, paymentAmount, reference, "success", reasonCode, currentDateTime);
+        paymentRepository.makePayment(accountID, beneficiary, accountNumber, payAmount, reference, "success", reasonCode, currentDateTime);
 
         accountRepository.changeAccountBalanceById(newBalance, accountID);
 
-        transactRepository.logTransaction(accountID ,"Payment", paymentAmount, "Online", "Success", "Payment transaction success", currentDateTime);
+        transactRepository.logTransaction(accountID, "Payment", payAmount, "Online", "Success", "Payment transaction success", currentDateTime);
         successMsg = reasonCode;
         redirectAttributes.addFlashAttribute("success", successMsg);
         return "redirect:/app/dashboard";
 
     }
 
-    }
+}

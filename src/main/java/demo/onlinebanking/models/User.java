@@ -11,9 +11,9 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-@SuppressWarnings("unused")
+@SuppressWarnings("all")
 @Entity
-public class User implements Serializable{
+public class User implements Serializable {
 
     @Id
     private int user_id;

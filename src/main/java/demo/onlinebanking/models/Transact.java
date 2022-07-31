@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.time.LocalDateTime;
 
+@SuppressWarnings("all")
 @Entity
 public class Transact {
 

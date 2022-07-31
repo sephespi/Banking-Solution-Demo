@@ -6,10 +6,10 @@ import java.util.Properties;
 
 public final class MailConfiguration {
 
-    private MailConfiguration(){
+    private MailConfiguration() {
     }
 
-    public static JavaMailSenderImpl getMailConfiguration(){
+    public static JavaMailSenderImpl getMailConfiguration() {
         JavaMailSenderImpl jmailSender = new JavaMailSenderImpl();
 
         Properties properties = jmailSender.getJavaMailProperties();

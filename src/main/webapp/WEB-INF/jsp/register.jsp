@@ -20,18 +20,18 @@
         <div class="card-body">
 
             <h1 class="form-header card-title mb-3">
-                <i class="fa fa-edit"></i> Register
+                <em class="fa fa-edit"></em> Register
             </h1>
 
             <c:if test="${requestScope.passwordMismatch != null}">
                 <div class="alert alert-danger text-center border border-danger">
-                    <b>${requestScope.passwordMismatch}</b>
+                    <strong>${requestScope.passwordMismatch}</strong>
                 </div>
             </c:if>
 
             <c:if test="${requestScope.success != null}">
                 <div class="alert alert-success text-center border border-success">
-                    <b>${requestScope.success}</b>
+                    <strong>${requestScope.success}</strong>
                 </div>
             </c:if>
 
@@ -81,7 +81,7 @@
             </p>
 
             <small class="text-warning">
-                <i class="fa fa-arrow-alt-circle-left"></i> <a href="/" class="btn btn-sm text-warning">Back</a>
+                <em class="fa fa-arrow-alt-circle-left"></em> <a href="/" class="btn btn-sm text-warning">Back</a>
             </small>
 
         </div>

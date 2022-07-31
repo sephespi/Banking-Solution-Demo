@@ -1,11 +1,15 @@
 package demo.onlinebanking.helpers;
 
+@SuppressWarnings("all")
 public class HTML {
 
-    public static String emailVerification(String token, String code) {
-        String url = "http://127.0.0.1:8070/verify?token=" + token +"&code=" + code;
+    private HTML(){
+    }
 
-        String emailTemplate = "<!DOCTYPE html>\n" +
+    public static String emailVerification(String token, String code) {
+        String url = "http://127.0.0.1:8070/verify?token=" + token + "&code=" + code;
+
+        return "<!DOCTYPE html>\n" +
                 "<html lang='en'>\n" +
                 "<head>\n" +
                 "    <meta charset='UTF-8'>\n" +
@@ -116,7 +120,6 @@ public class HTML {
                 "    \n" +
                 "</body>\n" +
                 "</html>";
-        return emailTemplate;
 
     }
 }

@@ -5,6 +5,7 @@ import javax.persistence.Id;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
+@SuppressWarnings("all")
 @Entity
 public class Account {
 
