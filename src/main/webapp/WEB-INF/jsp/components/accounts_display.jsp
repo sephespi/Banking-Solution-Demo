@@ -5,11 +5,11 @@
     <div class="container d-flex">
 
         <button id="add-account-btn" class="btn btn-lg shadow" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
-           <i class="fa fa-credit-card"></i> Add New Account
+           <em class="fa fa-credit-card"></em> Add New Account
         </button>
 
         <button id="transact-btn" class="btn btn-lg ms-auto shadow" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
-           <i class="fa fa-wallet"></i> Transactions
+           <em class="fa fa-wallet"></em> Transactions
         </button>
 
     </div>
@@ -40,11 +40,11 @@
                 <div class="accordion-body">
 
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item d-flex">Account Name <span class="ms-auto"><b>${account.account_name}</b></span></li>
-                        <li class="list-group-item d-flex">Account Number <span class="ms-auto"><b>${account.account_number}</b></span></li>
-                        <li class="list-group-item d-flex">Account Type <span class="ms-auto"><b>${account.account_type}</b></span></li>
-                        <li class="list-group-item d-flex">Account Balance <span class="ms-auto">PHP <b>${account.balance}</b></span></li>
-                        <li class="list-group-item d-flex">Creation Date <span class="ms-auto"><b>${account.created_at}</b></span></li>
+                        <li class="list-group-item d-flex">Account Name <span class="ms-auto"><strong>${account.account_name}</strong></span></li>
+                        <li class="list-group-item d-flex">Account Number <span class="ms-auto"><strong>${account.account_number}</strong></span></li>
+                        <li class="list-group-item d-flex">Account Type <span class="ms-auto"><strong>${account.account_type}</strong></span></li>
+                        <li class="list-group-item d-flex">Account Balance <span class="ms-auto">PHP <strong>${account.balance}</strong></span></li>
+                        <li class="list-group-item d-flex">Creation Date <span class="ms-auto"><strong>${account.created_at}</strong></span></li>
                     </ul>
 
                 </div>

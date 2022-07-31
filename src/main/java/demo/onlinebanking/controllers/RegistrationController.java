@@ -21,7 +21,7 @@ import java.security.SecureRandom;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-
+@SuppressWarnings("all")
 @Controller
 public class RegistrationController {
 

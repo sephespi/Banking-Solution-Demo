@@ -9,7 +9,7 @@
             <div class="card-body">
 
                 <h1 class="card-title">
-                    <i class="fas fa-ban text-danger"></i> NO Registered Accounts
+                    <em class="fas fa-ban text-danger"></em> NO Registered Accounts
                 </h1>
 
                 <hr>
@@ -21,7 +21,7 @@
 
                  <br>
                  <button id="" class="btn btn-primary btn-lg shadow" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
-                    <i class="fa fa-credit-card"></i> Add New Account
+                    <em class="fa fa-credit-card"></em> Add New Account
                  </button>
 
             </div>
