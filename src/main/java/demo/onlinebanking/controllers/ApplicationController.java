@@ -1,8 +1,10 @@
 package demo.onlinebanking.controllers;
 
 import demo.onlinebanking.models.Account;
+import demo.onlinebanking.models.PaymentHistory;
 import demo.onlinebanking.models.User;
 import demo.onlinebanking.repositories.AccountRepository;
+import demo.onlinebanking.repositories.PaymentHistoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,11 +22,16 @@ public class ApplicationController {
     @Autowired
     private AccountRepository accountRepository;
 
+    @Autowired
+    private PaymentHistoryRepository paymentHistoryRepository;
+
+    User user;
+
     @GetMapping("/dashboard")
     public ModelAndView getDashboard(HttpSession session) {
         ModelAndView getDashboardPage = new ModelAndView("dashboard");
 
-        User user = (User) session.getAttribute("user");
+        user = (User) session.getAttribute("user");
 
         List<Account> getAccounts = accountRepository.getUserAccountById(user.getUser_id());
 
@@ -36,4 +43,16 @@ public class ApplicationController {
         return getDashboardPage;
     }
 
+    @GetMapping("/payment_history")
+    public ModelAndView getPaymentHistory(HttpSession session) {
+        ModelAndView getPaymentHistoryPage = new ModelAndView("paymentHistory");
+        user = (User) session.getAttribute("user");
+
+        List<PaymentHistory> userPaymentHistory = paymentHistoryRepository.getPaymentRecordsById(user.getUser_id());
+
+        getPaymentHistoryPage.addObject("payment_history",userPaymentHistory);
+
+        return getPaymentHistoryPage;
+
+    }
 }
