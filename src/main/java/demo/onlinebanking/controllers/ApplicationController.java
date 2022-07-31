@@ -15,7 +15,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -39,11 +38,11 @@ public class ApplicationController {
 
         user = (User) session.getAttribute("user");
 
-        List<Account> getAccounts = accountRepository.getUserAccountById(user.getUser_id());
+        List<Account> getUserAccounts = accountRepository.getUserAccountById(user.getUser_id());
 
         BigDecimal getTotalAccountBalance = accountRepository.getTotalBalance(user.getUser_id());
 
-        getDashboardPage.addObject("userAccounts", getAccounts);
+        getDashboardPage.addObject("userAccounts", getUserAccounts);
         getDashboardPage.addObject("totalBalance", getTotalAccountBalance);
 
         return getDashboardPage;
