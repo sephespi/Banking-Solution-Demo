@@ -21,9 +21,12 @@ public class AuthenticationController {
     @Autowired
     private UserRepository userRepository;
 
+    final String LOGIN = "login";
+    final String ERROR = "error";
+
     @GetMapping("/login")
     public ModelAndView getLoginPage(){
-        ModelAndView getLoginPage = new ModelAndView("login");
+        ModelAndView getLoginPage = new ModelAndView(LOGIN);
         String token = Token.generateToken();
         getLoginPage.addObject("token", token);
         getLoginPage.addObject("PageTitle", "Login");
@@ -39,8 +42,8 @@ public class AuthenticationController {
                         HttpSession session){
 
         if(email.isEmpty() || password.isEmpty()){
-            model.addAttribute("error", "Username or Password cannot be empty");
-            return "login";
+            model.addAttribute(ERROR, "Username or Password cannot be empty");
+            return LOGIN;
         }
 
         String getEmailFromDatabase = userRepository.getUserEmail(email);
@@ -48,20 +51,20 @@ public class AuthenticationController {
         if(getEmailFromDatabase != null ){
             String getPasswordFromDatabase = userRepository.getUserPassword(getEmailFromDatabase);
             if(!BCrypt.checkpw(password, getPasswordFromDatabase)){
-                model.addAttribute("error", "Incorrect Username or Password");
-                return "login";
+                model.addAttribute(ERROR, "Incorrect Username or Password");
+                return LOGIN;
             }
         }else{
-            model.addAttribute("error", "Something went wrong");
-            return "error";
+            model.addAttribute(ERROR, "Something went wrong");
+            return ERROR;
         }
 
         int verified = userRepository.isVerified(getEmailFromDatabase);
 
         if(verified != 1){
             String msg = "This account is not verified. Please check your email and verify your account";
-            model.addAttribute("error", msg);
-            return "login";
+            model.addAttribute(ERROR, msg);
+            return LOGIN;
         }
 
         User user = userRepository.getUserDetails(getEmailFromDatabase);

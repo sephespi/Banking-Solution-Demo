@@ -90,6 +90,7 @@
             <artifactId>spring-security-crypto</artifactId>
             <version>5.7.1</version>
         </dependency>
+
     </dependencies>
 
     <build>
@@ -98,6 +99,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
+
         </plugins>
     </build>
 

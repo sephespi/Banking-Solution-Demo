@@ -3,13 +3,17 @@ package demo.onlinebanking.models;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Transient;
-import javax.validation.constraints.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @SuppressWarnings("unused")
 @Entity
-public class User {
+public class User implements Serializable{
 
     @Id
     private int user_id;
@@ -21,7 +25,6 @@ public class User {
     private String last_name;
     @Email
     @NotEmpty(message = "Email address is required")
-    @Pattern(regexp = "([a-zA-Z0-9]+(?:[._+-][a-zA-Z0-9]+)*)@([a-zA-Z0-9]+(?:[.-][a-zA-Z0-9]+)*[.][a-zA-Z]{2,})", message = "Enter a valid email address")
     private String email;
     @NotEmpty(message = "Password is required")
     @NotNull

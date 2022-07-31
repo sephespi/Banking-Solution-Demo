@@ -1,7 +1,5 @@
 package demo.onlinebanking.models;
 
-import org.hibernate.validator.constraints.UniqueElements;
-
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.math.BigDecimal;

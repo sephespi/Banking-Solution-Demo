@@ -1,6 +1,5 @@
 package demo.onlinebanking.repositories;
 
-import demo.onlinebanking.models.Payment;
 import demo.onlinebanking.models.PaymentHistory;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;

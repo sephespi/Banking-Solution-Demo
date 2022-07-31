@@ -13,6 +13,8 @@ public class HomeController {
     @Autowired
     private UserRepository userRepository;
 
+    static final String ERROR = "error";
+
     @GetMapping("/")
     public ModelAndView getHome(){
         ModelAndView getHomePage = new ModelAndView("home");
@@ -23,7 +25,7 @@ public class HomeController {
 
     @GetMapping("/error")
     public ModelAndView getErrorPage(){
-        ModelAndView getErrorPage = new ModelAndView("error");
+        ModelAndView getErrorPage = new ModelAndView(ERROR);
         getErrorPage.addObject("PageTitle", "Error");
         System.out.println("Location: Error Page");
         return getErrorPage;
@@ -35,8 +37,8 @@ public class HomeController {
         String dbToken = userRepository.checkToken(token);
 
         if(dbToken == null){
-            getVerifyPage = new ModelAndView("error");
-            getVerifyPage.addObject("error", "This session has expired");
+            getVerifyPage = new ModelAndView(ERROR);
+            getVerifyPage.addObject(ERROR, "This session has expired");
             return getVerifyPage;
         }
 

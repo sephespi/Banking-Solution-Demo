@@ -4,7 +4,10 @@ import org.springframework.mail.javamail.JavaMailSenderImpl;
 
 import java.util.Properties;
 
-public class MailConfiguration {
+public final class MailConfiguration {
+
+    private MailConfiguration(){
+    }
 
     public static JavaMailSenderImpl getMailConfiguration(){
         JavaMailSenderImpl jmailSender = new JavaMailSenderImpl();

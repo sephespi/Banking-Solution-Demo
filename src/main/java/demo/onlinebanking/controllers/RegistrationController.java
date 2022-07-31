@@ -17,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.mail.MessagingException;
 import javax.validation.Valid;
+import java.security.SecureRandom;
 import java.util.Random;
 
 @SuppressWarnings("ALL")
@@ -25,6 +26,8 @@ public class RegistrationController {
 
     @Autowired
     private UserRepository userRepository;
+
+    private static final SecureRandom RANDOM = new SecureRandom();
 
     @GetMapping("/register")
     public ModelAndView getRegisterPage(){
@@ -57,9 +60,8 @@ public class RegistrationController {
 
         String token = Token.generateToken();
 
-        Random random = new Random();
         int bound = 123;
-        int code = bound * random.nextInt(bound);
+        int code = bound * RANDOM.nextInt(bound);
 
         String emailBody = HTML.emailVerification(token, Integer.toString(code));
 
