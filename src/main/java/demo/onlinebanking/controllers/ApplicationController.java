@@ -2,9 +2,11 @@ package demo.onlinebanking.controllers;
 
 import demo.onlinebanking.models.Account;
 import demo.onlinebanking.models.PaymentHistory;
+import demo.onlinebanking.models.TransactionHistory;
 import demo.onlinebanking.models.User;
 import demo.onlinebanking.repositories.AccountRepository;
 import demo.onlinebanking.repositories.PaymentHistoryRepository;
+import demo.onlinebanking.repositories.TransactionHistoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -24,6 +27,9 @@ public class ApplicationController {
 
     @Autowired
     private PaymentHistoryRepository paymentHistoryRepository;
+
+    @Autowired
+    private TransactionHistoryRepository transactionHistoryRepository;
 
     User user;
 
@@ -55,4 +61,17 @@ public class ApplicationController {
         return getPaymentHistoryPage;
 
     }
+
+    @GetMapping("transact_history")
+    public ModelAndView getTransactHistory(HttpSession session){
+        ModelAndView getTransactHistoryPage = new ModelAndView("transactHistory");
+        user = (User) session.getAttribute("user");
+
+        List<TransactionHistory> userTransactHistory = transactionHistoryRepository.getTransactionRecordsById(user.getUser_id());
+
+        getTransactHistoryPage.addObject("transact_history", userTransactHistory);
+
+        return getTransactHistoryPage;
+    }
+
 }
