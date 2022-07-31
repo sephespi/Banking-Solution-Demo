@@ -2,6 +2,7 @@ package demo.onlinebanking.controllers;
 
 import demo.onlinebanking.models.User;
 import demo.onlinebanking.repositories.AccountRepository;
+import demo.onlinebanking.repositories.PaymentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpSession;
+import java.time.LocalDateTime;
 
 @Controller
 @RequestMapping("/transact")
@@ -18,13 +20,17 @@ public class TransactionController {
     @Autowired
     private AccountRepository accountRepository;
 
+    @Autowired
+    private PaymentRepository paymentRepository;
+
+
     String errorMsg;
     String successMsg;
     User user;
     double currentBalance;
     double newBalance;
 
-    // Deposit form
+    // Deposit Transaction Controller
     @PostMapping("/deposit")
     public String deposit(@RequestParam("deposit_amount")String depositAmount,
                           @RequestParam("account_id") String accountID,
@@ -57,7 +63,7 @@ public class TransactionController {
 
     }
 
-    // Transfer form
+    // Transfer Transaction Controller
     @PostMapping("/transfer")
     public String transfer(@RequestParam("transfer_from")String transfer_from,
                            @RequestParam("transfer_to") String transfer_to,
@@ -104,7 +110,7 @@ public class TransactionController {
 
     }
 
-    // Withdrawal form
+    // Withdrawal Transaction Controller
     @PostMapping("/withdraw")
     public String withdraw(@RequestParam("withdrawal_amount")String withdrawalAmount,
                            @RequestParam("account_id")String accountID,
@@ -134,6 +140,54 @@ public class TransactionController {
         accountRepository.changeAccountBalanceById(newBalance, account_id);
 
         successMsg = "Withdraw Transaction completed successfully!";
+        redirectAttributes.addFlashAttribute("success", successMsg);
+        return "redirect:/app/dashboard";
+
+    }
+
+    // Payment Transaction Controller
+    @PostMapping("/payment")
+    public String payment(@RequestParam("beneficiary")String beneficiary,
+                          @RequestParam("account_number")String account_number,
+                          @RequestParam("account_id")String account_id,
+                          @RequestParam("reference")String reference,
+                          @RequestParam("payment_amount")String payment_amount,
+                          HttpSession session,
+                          RedirectAttributes redirectAttributes){
+
+        if(beneficiary.isEmpty() || account_number.isEmpty() || account_id.isEmpty() || payment_amount.isEmpty()){
+            errorMsg = "All fields are required";
+            redirectAttributes.addFlashAttribute("error", errorMsg);
+            return "redirect:/app/dashboard";
+        }
+
+        int accountID = Integer.parseInt(account_id);
+        double paymentAmount = Double.parseDouble(payment_amount);
+
+        if(paymentAmount == 0){
+            errorMsg = "Payment amount cannot be zero (0). Please enter a valid amount.";
+            redirectAttributes.addFlashAttribute("error", errorMsg);
+            return "redirect:/app/dashboard";
+        }
+
+        user = (User) session.getAttribute("user");
+
+        currentBalance = accountRepository.getAccountBalance(user.getUser_id(), accountID);
+
+        if(currentBalance < paymentAmount){
+            errorMsg = "You have insufficient funds to perform this payment";
+            redirectAttributes.addFlashAttribute("error", errorMsg);
+            return "redirect:/app/dashboard";
+        }
+
+        newBalance = currentBalance - paymentAmount;
+        String reasonCode = "Payment transaction completed successfully!";
+        LocalDateTime currentDateTime = LocalDateTime.now();
+        paymentRepository.makePayment(accountID, beneficiary, account_number, paymentAmount, reference, "success", reasonCode, currentDateTime);
+
+        accountRepository.changeAccountBalanceById(newBalance, accountID);
+
+        successMsg = reasonCode;
         redirectAttributes.addFlashAttribute("success", successMsg);
         return "redirect:/app/dashboard";
 
