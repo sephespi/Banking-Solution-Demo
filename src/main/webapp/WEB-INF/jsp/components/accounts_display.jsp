@@ -9,7 +9,7 @@
         </button>
 
         <button id="transact-btn" class="btn btn-lg ms-auto shadow" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
-           <i class="fa fa-wallet"></i> Transact
+           <i class="fa fa-wallet"></i> Transactions
         </button>
 
     </div>
