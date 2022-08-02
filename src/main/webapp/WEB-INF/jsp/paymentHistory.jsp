@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="../css/fontawesome/css/all.css">
     <link rel="stylesheet" href="../css/main.css">
     <script src="../js/bootstrap.bundle.js"></script>
-    <title>Dashboard</title>
+    <title>Payment History</title>
 </head>
 <body>
 
@@ -30,7 +30,7 @@
             <c:if test="${requestScope.payment_history != null}">
 
                 <table class="table text-center table-striped">
-                    <caption>PaymentHistory</caption>
+                    <caption>Payment History</caption>
                     <tr>
                         <th>Record Number</th>
                         <th>Beneficiary</th>

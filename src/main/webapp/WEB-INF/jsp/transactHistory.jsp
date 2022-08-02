@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="../css/fontawesome/css/all.css">
     <link rel="stylesheet" href="../css/main.css">
     <script src="../js/bootstrap.bundle.js"></script>
-    <title>Dashboard</title>
+    <title>Transaction History</title>
 </head>
 <body>
 
