@@ -4,7 +4,7 @@
 
     <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
         <div class="offcanvas-header">
-            <h5 id="offcanvasRightLabel" class="text-white">Create / Add an Account </h5>
+            <h5 id="offcanvasRightLabel" class="text-white">Create New Account </h5>
             <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
 
