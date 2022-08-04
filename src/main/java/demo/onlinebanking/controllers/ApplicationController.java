@@ -58,7 +58,7 @@ public class ApplicationController {
 
     }
 
-    @GetMapping("transact_history")
+    @GetMapping("/transact_history")
     public ModelAndView getTransactHistory(HttpSession session) {
         ModelAndView getTransactHistoryPage = new ModelAndView("transactHistory");
         user = (User) session.getAttribute("user");

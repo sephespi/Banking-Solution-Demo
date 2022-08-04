@@ -57,9 +57,6 @@ public class AuthenticationController {
                 model.addAttribute(error, "Incorrect Username or Password");
                 return login;
             }
-        } else {
-            model.addAttribute(error, "Something went wrong");
-            return error;
         }
 
         int verified = userRepository.isVerified(getEmailFromDatabase);
